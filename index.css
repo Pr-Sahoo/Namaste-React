@@ -44,5 +44,6 @@
     display: flex;
     flex-wrap: wrap;
     margin: 4px;
+    text-align: center;
     /* padding: 5px; */
 }

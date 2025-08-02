@@ -104,19 +104,7 @@ const Header = () => {
         </div>
     )
 }
-// const styleCard = {backgroundColor:"#f0f0f0"}
-const ResturantCard = ({ names, time, star }) => {
-    return (
-        <div className="res-card" style={{ backgroundColor: "#f0f0f0" }}>
-            <img src="https://bonmasala.com/wp-content/uploads/2022/10/mutton-biriyani-recipe.jpeg" alt="resLogo" className="res-logo" />
-            {/* <h3>Meghna Foods</h3> */}
-            <h3>{names}</h3>
-            <h4>Biriyani, North Indian, Asian</h4>
-            <h4>{star} stars</h4>
-            <h4>{time} mins</h4>
-        </div>
-    )
-}
+
 const data = `{
     "info": {
         "id": "87320",
@@ -204,14 +192,42 @@ const data = `{
     }
 }`
 const parsedData = JSON.parse(data);
+// const styleCard = {backgroundColor:"#f0f0f0"}
+// const ResturantCard = ({ names, time, star }) => {
+//     return (
+//         <div className="res-card" style={{ backgroundColor: "#f0f0f0" }}>
+//             <img src="https://bonmasala.com/wp-content/uploads/2022/10/mutton-biriyani-recipe.jpeg" alt="resLogo" className="res-logo" />
+//             {/* <h3>Meghna Foods</h3> */}
+//             <h3>{names}</h3>
+//             <h4>Biriyani, North Indian, Asian</h4>
+//             <h4>{star} stars</h4>
+//             <h4>{time} mins</h4>
+//         </div>
+//     )
+// }
+const StyleCard = ({resName}) => {
+    const {name, cuisines, avgRating, sla, cloudinaryImageId} = resName;
+    return(
+        <div className="res-card" style={{backgroundColor: "#f0f0f0"}}>
+            {/* <img className="res-logo" src={`https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_400/${cloudinaryImageId}`} alt="Food" /> */}
+            <img className="res-logo" src={`https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_400/`+parsedData.cloudinaryImageId} alt="Food" />
+            {/* <img className="res-card" src={cloudinaryImgId} alt="food" /> */}
+            <h3>{name}</h3>
+            <h4>{cuisines.join(", ")}</h4>
+            <h4>{avgRating} stars</h4>
+            <h4>{sla.slaString}</h4>
+        </div>
+    )
+}
 const Body = () => {
     return (
         <div className="body">
             <div className="search">Search</div>
             <div className="res-container">
-                {names.map((resName, idx) => (
+                {/* {names.map((resName, idx) => (
                     <ResturantCard key={idx} names={resName} time={Math.floor(Math.random() * 40)} star={(Math.random() * (5 - 1) + 1).toFixed(1)} />
-                ))}
+                ))} */}
+                <StyleCard resName={parsedData.info}/>
             </div>
         </div>
     )
