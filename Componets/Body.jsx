@@ -90,8 +90,8 @@ import { AccessKey } from "./utils/constant";
 import { useEffect, useState } from "react";
 // import { SecretKey } from "./utils/constant";
 
-const parsedData = JSON.parse(reslist);
-const ItemList = ["pizza", "burger", "biryani", "roll", "frenchfries", "coke", "cake", "shake", "chocolate", "chickencurry", "ricecurry", "pannercurry"];
+let parsedData = JSON.parse(reslist);
+const ItemList = ["pizza", "burger", "biryani", "roll", "frenchfries", "coke", "cake", "shake", "chocolate", "chickencurry", "ricecurry", "pannercurry","icecream","sweets"];
 
 
 
@@ -116,15 +116,29 @@ const StyleCard = ({ resName }) => {
 }
 
 const Body = () => {
+    // const handleTop = () => {
+    //     const  topRated = parsedData.filter((data)=> {return parseFloat(data.info.avgRating) > 4.5});
+    //     console.log(topRated);
+    // }
+    // const [filteredData, setFilteredData] = useState(parsedData);
+    const arr = useState(parsedData);
+    // const [filteredData, setFilteredData] = arr;
+    const filteredData = arr[0];
+    const setFilteredData = arr[1];
+    
     return (
         <div className="body">
-            <div className="search">Search</div>
+            <div className="filter">
+                {/* <button className="filter-btn" onClick={handleTop}>Top Resturant</button> */}
+                <button className="filter-btn" onClick={() => {
+                    let topRated = parsedData.filter((res) => res.info.avgRating > 4.5);
+                    console.log(topRated);
+                    setFilteredData(topRated)
+                }}>Top Resturant</button>
+            </div>
             <div className="res-container">
-                {/* {names.map((resName, idx) => (
-                    <ResturantCard key={idx} names={resName} time={Math.floor(Math.random() * 40)} star={(Math.random() * (5 - 1) + 1).toFixed(1)} />
-                ))} */}
-                {/* <StyleCard resName={parsedData.info}/> */}
-                {parsedData.map((res, idx) => (<StyleCard key={idx} resName={res.info} />))}
+                {/* {parsedData.map((res, idx) => (<StyleCard key={idx} resName={res.info} />))} */}
+                {filteredData.map((res, idx) => (<StyleCard key={idx} resName={res.info} />))}
             </div>
         </div>
     )
