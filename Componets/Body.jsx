@@ -29,26 +29,26 @@ const StyleCard = ({ resName }) => {
 }
 
 const Body = () => {
-    // const arr = useState(parsedData);
-    // const [filteredData, setFilteredData] = arr;
+    const arr = useState(parsedData);
+    const [filteredData, setFilteredData] = arr;
     // const filteredData = arr[0];
     // const setFilteredData = arr[1];
 
     // const [filteredData, setFilteredData] = useState(parsedData);
-    const [filteredData, setFilteredData] = useState([]);
+    // const [filteredData, setFilteredData] = useState([]);
 
-    useEffect(() => {
-        fetchData();
-    },[]);
+    // useEffect(() => {
+    //     fetchData();
+    // },[]);
 
-    const fetchData = async () => {
-        const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=20.3639142&lng=85.7974141&collection=83639&tags=layout_CCS_Biryani&sortBy=&filters=&type=rcv2&offset=0&page_type=null");
-        const res = await data.json();
-        console.log(res);
-        const resturants = res?.data?.cards?.map(card => card.card?.card.info)?.filter(info => info !== undefined);
-        // setFilteredData(json.data.cards?data.cards)
-        setFilteredData(resturants);
-    }
+    // const fetchData = async () => {
+    //     const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=20.3639142&lng=85.7974141&collection=83639&tags=layout_CCS_Biryani&sortBy=&filters=&type=rcv2&offset=0&page_type=null");
+    //     const res = await data.json();
+    //     console.log(res);
+    //     const resturants = res?.data?.cards?.map(card => card.card?.card.info)?.filter(info => info !== undefined);
+    //     // setFilteredData(json.data.cards?data.cards)
+    //     setFilteredData(resturants);
+    // }
     
     return (
         <div className="body">
